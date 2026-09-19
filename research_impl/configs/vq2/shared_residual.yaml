@@ -1,0 +1,31 @@
+data:
+  buffer_dir: ""
+  memory_bank_path: ""
+  use_external_wrist_keys: true
+model:
+  backbone:
+    model_path: ""
+    use_lora: true
+    lora:
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules: q_proj,k_proj,v_proj,o_proj
+  variant: vq2_fast
+vq2:
+  adapter_mode: shared_residual
+  vq1_shared_lora_path: ""
+  residual_lora:
+    r: 16
+    alpha: 32
+    dropout: 0.05
+training:
+  output_dir: ""
+  epochs: 30
+  batch_size: 12
+  max_train_steps: 0
+  lr:
+    backbone: 2.0e-5
+    heads: 1.0e-4
+  wandb:
+    enabled: false

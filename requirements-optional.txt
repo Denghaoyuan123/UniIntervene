@@ -1,0 +1,2 @@
+# Optional 4-bit and 8-bit model loading on supported CUDA/Linux systems.
+bitsandbytes>=0.45,<1

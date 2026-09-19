@@ -1,0 +1,48 @@
+data:
+  buffer_dir: ""
+  memory_bank_path: ""
+  use_external_wrist_keys: true
+model:
+  backbone:
+    model_path: ""
+    use_lora: true
+    lora:
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules: q_proj,k_proj,v_proj,o_proj
+  variant: full
+  future_latent_mode: pooled
+  future_target:
+    source: online_vjepa2
+    vjepa_path: facebook/vjepa2-vitl-fpc64-256
+    require_future_loss: true
+  intervention:
+    head_type: tvr_history
+    loss_type: focal
+    threshold: 0.5
+    focal:
+      alpha: 0.75
+      gamma: 2.0
+    tvr:
+      window: 8
+      value_history_embed_dim: 32
+      epsilon: 0.005
+      gamma: 0.9
+      lambda_tvr: 1.0
+training:
+  output_dir: ""
+  epochs: 30
+  batch_size: 12
+  max_train_steps: 0
+  lr:
+    backbone: 2.0e-5
+    heads: 1.0e-4
+  loss_weights:
+    future: 1.0
+    q: 1.0
+    intervention: 1.0
+    tvr: 1.0
+    v_curr: 1.0
+  wandb:
+    enabled: false

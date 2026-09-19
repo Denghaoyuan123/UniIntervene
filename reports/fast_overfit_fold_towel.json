@@ -1,0 +1,14 @@
+{
+  "chunks": 16,
+  "horizon": 8,
+  "action_dim": 7,
+  "min_tokens": 5,
+  "max_tokens": 21,
+  "initial_ce": 7.625934600830078,
+  "final_ce": 0.003505879081785679,
+  "loss_ratio": 0.000459731071048533,
+  "final_token_accuracy": 1.0,
+  "tokenizer_reconstruction_mae": 0.0040351045317947865,
+  "passed": true,
+  "data_note": "16 real Fold Towel 8x7 action chunks; small-sample overfit smoke test, not held-out policy evaluation"
+}

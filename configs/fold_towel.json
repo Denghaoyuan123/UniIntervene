@@ -1,0 +1,74 @@
+{
+  "task": "fold_towel",
+  "instruction": "Fold the towel.",
+  "observation_keys": [
+    "external",
+    "wrist",
+    "state"
+  ],
+  "value_function": {
+    "gamma": 0.99,
+    "lambda_td": 1.0,
+    "lambda_label": 0.3,
+    "lambda_prog": 1.0,
+    "lambda_cql": 0.05,
+    "progress_warmup_epochs": 5,
+    "fail_sample_ratio": 0.5,
+    "early_stop_patience": 6,
+    "epochs": 150,
+    "batch_size": 256
+  },
+  "vq1": {
+    "backbone": "Qwen3-VL-2B-Instruct",
+    "variant": "full",
+    "future_target": "facebook/vjepa2-vitl-fpc64-256",
+    "future_latent_mode": "pooled",
+    "history_window": 8,
+    "history_embed_dim": 32,
+    "epsilon": 0.005,
+    "gamma_r": 0.9,
+    "threshold": 0.5,
+    "focal_alpha": 0.75,
+    "focal_gamma": 2.0,
+    "lambda_future": 1.0,
+    "lambda_q": 1.0,
+    "lambda_intervention": 1.0,
+    "lambda_tvr": 1.0,
+    "lambda_v_curr": 1.0,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "epochs": 30,
+    "batch_size": 12,
+    "lr_backbone": 2e-05,
+    "lr_heads": 0.0001
+  },
+  "mining": {
+    "window": 8,
+    "min_drop": 0.05,
+    "min_down_ratio": 0.7,
+    "slope_threshold": -0.01,
+    "flat_ratio": 0.6,
+    "delta": 0.03,
+    "abrupt_min_drop": 0.12,
+    "recover_horizon": 3,
+    "recover_frac": 0.5
+  },
+  "memory": {
+    "span": 32,
+    "delta_threshold": 0.4,
+    "progress_bins": 20,
+    "items_per_bin": 12,
+    "target_items": 240,
+    "max_per_episode": 8,
+    "target_vf_min": 0.75
+  },
+  "vq2": {
+    "recovery_horizon": 8,
+    "action_dim": 7,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "token_loss": "per_token_ce",
+    "tokenizer": "FAST"
+  }
+}
